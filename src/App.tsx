@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TaskList from './components/TaskList';
+import TaskForm from './components/TaskForm';
+import { CssBaseline, Container, AppBar, Toolbar, Typography, Box } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function App() {
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+    background: {
+      default: '#f5f5f5',
+    },
+  },
+});
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Task Scheduler</Typography>
+        </Toolbar>
+      </AppBar>
+      <Box
+        sx={{
+          backgroundImage: 'url(https://source.unsplash.com/random)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '100vh',
+          paddingTop: '20px',
+        }}
+      >
+        <Container>
+          <TaskForm />
+          <TaskList />
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
